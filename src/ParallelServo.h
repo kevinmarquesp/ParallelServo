@@ -42,6 +42,18 @@ public:
    */
   void begin(u8 pin, i16 min=0, i16 max=180);
 
+  // todo: add a documentation for this methdos
+  ParallelServo* move(bool condition, u8 deg, u8 speed);
+
+  // todo: add a (better) documentation for this methdos
+  ParallelServo* move(u8 deg, u8 speed);
+
+  // todo: add a documentation for this methdos
+  void reset(void);
+
+  // todo: add a documentation for this methdos
+  void afterDone(void routine(void));
+
   // Getters and setters to allow the user change/monitor some behavior of this
   // object attributes. The body of the `inline` methods will be declared right
   // here in this file.
