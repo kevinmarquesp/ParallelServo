@@ -1,10 +1,19 @@
 #include "ParallelServo.h"
 
+// ------------------------------ constructor ------------------------------ //
+
 ParallelServo::ParallelServo(void)
 {
   _min = 0;
   _max = 180;
+
+  _index = 0;
+  _isDone = false;
+  _isLocked = false;
+  _isMoving = false;
 }
+
+// ----------------------------- public methods ---------------------------- //
 
 void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
 {
