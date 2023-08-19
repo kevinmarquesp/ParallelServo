@@ -29,8 +29,6 @@ void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
   this->write(_min);  // move the motor to the min value at the beggining
 }
 
-// todo: write the update move and the update postion methods
-
 ParallelServo* ParallelServo::move(bool condition, u8 deg, u8 speed)
 {
   // this line just ajust the deg value to the correct range (between _min and _max)

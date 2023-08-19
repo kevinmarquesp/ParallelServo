@@ -27,6 +27,10 @@
 #define u16 uint16_t
 #define u64 uint64_t
 
+// todo: mention on the description how the movements is counted
+// todo: edit the docs to recoment to reset using reset() instead of setIndex(0)
+// todo: edit the being() jsdoc to be consistency with the types
+
 /*!
  * A little side note: when a movement is completed, the index of this object
  * (stored in _index) will increment by one AND LOCK THE OBJECT, witch means
@@ -79,8 +83,7 @@ public:
 // useless to you, but if you think you need to be a hacker, go ahead. And
 // remember, make a pull request if you found out a better way to write this
 // library! <3
-
- private:
+private:
   u8 _pin, _min, _max, _index;
   bool _isDone, _isLocked, _isMoving;
   u64 _mpc; //stands for "multiprocessing counter"
