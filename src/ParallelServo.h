@@ -27,6 +27,17 @@
 #define u16 uint16_t
 #define u64 uint64_t
 
+/*!
+ * A little side note: when a movement is completed, the index of this object
+ * (stored in _index) will increment by one AND LOCK THE OBJECT, witch means
+ * that you need to reset() it every time the movement is done, you can do that
+ * using the afterDone() method.
+ *
+ * This feature is important to let the user controll what will happen after
+ * every move, like: when the movement with index N should start or what to do
+ * after every thing is done: For an example, you can set the index to 0 (with
+ * setIndex(0) command) after the final movement to make it run again.
+ */
 class ParallelServo: public Servo
 {
 public:
@@ -72,7 +83,7 @@ public:
  private:
   u8 _pin, _min, _max, _index;
   bool _isDone, _isLocked, _isMoving;
-  u64 _mpc; // stands for "multiprocessing counter"
+  u64 _mpc; //stands for "multiprocessing counter"
 
   // todo: add a documentation for this methdos
   void _updateCurrentPosition(u8 deg, u8 speed);
