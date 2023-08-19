@@ -78,7 +78,7 @@ void ParallelServo::_updateCurrentPosition(u8 deg, u8 speed)
     _mpc = millis(); //update the process counter
 
     // increment/decrement by one each speed millisseconds
-    if (deg > curr)
+    if (deg > currdeg)
       this->write(this->read() + 1);
     else
       this->write(this->read() - 1);
