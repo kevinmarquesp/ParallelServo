@@ -1,5 +1,6 @@
-TEST_SKETCH ?= test/test.ino
-LIB ?= src
+TEST_SKETCH := test/test.ino
+LIB := src
+LIB_NAME := ParallelServo
 
 ARDUINO_CLI_BIN ?= ${HOME}/.local/bin/arduino-cli
 AUNITER_BIN ?= ${HOME}/.local/share/AUniter/auniter.sh
@@ -7,6 +8,9 @@ AUNITER_BIN ?= ${HOME}/.local/share/AUniter/auniter.sh
 BOARD_SHORT ?= uno
 BOARD_LONG ?= arduino:avr:uno
 PORT ?= /dev/ttyUSB0
+
+list-todos:
+	@grep -n 'todo:' $(LIB)/$(LIB_NAME).h $(LIB)/$(LIB_NAME).cpp | sed 's/: *\/\//: \/\//'
 
 test-avr-uno:
 	@echo "log: Compoiling tests for the arduino:avr:uno board"
