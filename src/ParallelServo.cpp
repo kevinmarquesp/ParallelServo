@@ -41,7 +41,7 @@ ParallelServo* ParallelServo::move(bool condition, u8 deg, u8 speed)
   if (!condition || _isLocked)
     return this;
   else
-    _isDone = false; // reset done value when the movement starts
+    _isDone = false; //reset done value when the movement starts
 
   // it's unecessary to do any math when the speed is 0, just go ahead and finish the movemt
   if (speed < 1)
@@ -66,4 +66,28 @@ ParallelServo* ParallelServo::move(bool condition, u8 deg, u8 speed)
 ParallelServo* ParallelServo::move(u8 deg, u8 speed)
 {
   return this->move(_index == 0, deg, speed);
+}
+
+// --------------------------- private methods ----------------------------- //
+
+void ParallelServo::_updateCurrentPosition(u8 deg, u8 speed)
+{
+  if (millis() - _mpc >= speed)
+  {
+    u8 currdeg = this->read();
+    _mpc = millis(); //update the process counter
+
+    // increment/decrement by one each speed millisseconds
+    if (deg > curr)
+      this->write(this->read() + 1);
+    else
+      this->write(this->read() - 1);
+  }
+}
+
+void ParallelServo::_stopAndMarkMovementAsDone(void)
+{
+  _isDone = true;
+  _isMoving = false;
+  ++_index; //increment the index to the next movement
 }
