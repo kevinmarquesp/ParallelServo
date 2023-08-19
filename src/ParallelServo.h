@@ -74,19 +74,20 @@ public:
   // object attributes. The body of the `inline` methods will be declared right
   // here in this file.
 
+  inline void setLock(bool isLocked) { _isLocked = isLocked; }  // the servo will not do anything if the lock attribute is setted to true (starting with 0)
+  inline bool isDone(void) { return _isDone; }                  // it will return true when the movement is finished and the servo is locked
+  inline u8 getIndex(void) { return _index; }                   // the index attribute will add by one each movement done
   inline u8 getPin(void) { return _pin; }
   inline u8 getMin(void) { return _min; }
   inline u8 getMax(void) { return _max; }
-  inline u8 getIndex(void) { return _index; } // the index attribute will add by one each movement done
-  inline void setLock(bool isLocked) { _isLocked = isLocked; } // the servo will not do anything if the lock attribute is setted to true (starting with 0)
 
 // warning: if you are just a normal user, all the code below will be a little
 // useless to you, but if you think you need to be a hacker, go ahead. And
 // remember, make a pull request if you found out a better way to write this
 // library! <3
 private:
-  u8 _pin, _min, _max, _index;
   bool _isDone, _isLocked, _isMoving;
+  u8 _pin, _min, _max, _index, _pos;
   u64 _mpc; //stands for "multiprocessing counter"
 
   // todo: add a documentation for this methdos

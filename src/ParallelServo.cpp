@@ -6,6 +6,7 @@ ParallelServo::ParallelServo(void)
 {
   _min = 0;
   _max = 180;
+  _pos = _min;
 
   _index = 0;
   _isDone = false;
@@ -27,6 +28,8 @@ void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
 
   this->attach(_pin); // methods from the Servo.h
   this->write(_min);  // move the motor to the min value at the beggining
+
+  _pos = _min;
 }
 
 ParallelServo* ParallelServo::move(bool condition, u8 deg, u8 speed)
@@ -85,14 +88,15 @@ void ParallelServo::_updateCurrentPosition(u8 deg, u8 speed)
 {
   if (millis() - _mpc >= speed)
   {
-    u8 currdeg = this->read();
     _mpc = millis(); //update the process counter
 
     // increment/decrement by one each speed millisseconds
-    if (deg > currdeg)
-      this->write(this->read() + 1);
+    if (deg > _pos)
+      ++_pos;
     else
-      this->write(this->read() - 1);
+      --_pos;
+
+    this->write(_pos);
   }
 }
 
