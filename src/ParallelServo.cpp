@@ -66,6 +66,19 @@ ParallelServo* ParallelServo::move(u8 deg, u8 speed)
   return this->move(_index == 0, deg, speed);
 }
 
+void ParallelServo::reset(void)
+{
+  _isMoving = false;
+  _isDone = false;
+  _index = 0;
+}
+
+void ParallelServo::afterDone(void routine(void))
+{
+  if (_isDone)
+    routine();
+}
+
 // --------------------------- private methods ----------------------------- //
 
 void ParallelServo::_updateCurrentPosition(u8 deg, u8 speed)
