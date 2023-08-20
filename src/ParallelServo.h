@@ -77,9 +77,11 @@ public:
   // object attributes. The body of the `inline` methods will be declared right
   // here in this file.
 
-  inline void setLock(bool isLocked) { _isLocked = isLocked; }  // the servo will not do anything if the lock attribute is setted to true (starting with 0)
-  inline bool isDone(void) { return _isDone; }                  // it will return true when the movement is finished and the servo is locked
-  inline u8 getIndex(void) { return _index; }                   // the index attribute will add by one each movement done
+  inline u8 getIndex(void) { return _index; } // the index attribute will add by one each movement done
+  inline bool isDone(void) { return _isDone; } // it will return true when the movement is finished and the servo is locked
+  inline bool isLocked(void) { return _isLocked; }
+  inline void setLock(bool isLocked) { _isLocked = isLocked; } // the servo will not do anything if the lock attribute is setted to true (starting with 0)
+
   inline u8 getPin(void) { return _pin; }
   inline u8 getMin(void) { return _min; }
   inline u8 getMax(void) { return _max; }
