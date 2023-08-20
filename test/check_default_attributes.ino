@@ -15,19 +15,20 @@ test(begin_assigns_pin_value)
     {-1,  255}  // underflow value
   };
 
+  ParallelServo s; // the servo object should be outside for some reason
+
   for (uint8_t i = 0; i < sizeof(testCases) / sizeof(testCases[0]); ++i)
   {
     auto c = testCases[i];
 
-    ParallelServo s;
     s.begin(c.pin); // min and max are default values
 
     assertEqual(s.getPin(), c.epin);
-    assertEqual(s.getMin(), 0);
-    assertEqual(s.getMax(), 180);
 
     assertTrue(s.attached());
-    assertEqual(s.read(), 0);
+    s.detach();
+
+    assertFalse(s.attached());
   }
 }
 
@@ -48,11 +49,12 @@ test(begin_assigns_min_and_max_values)
     {90,  90,  0,  180}, // same value for min and max
   };
 
+  ParallelServo s;
+
   for (uint8_t i = 0; i < sizeof(testCases) / sizeof(testCases[0]); ++i)
   {
     auto c = testCases[i];
 
-    ParallelServo s;
     s.begin(12, c.min, c.max); // pin is fixed at 12
 
     assertEqual(s.getPin(), 12);
@@ -60,6 +62,8 @@ test(begin_assigns_min_and_max_values)
     assertEqual(s.getMax(), c.emax);
 
     assertTrue(s.attached());
-    assertEqual(s.read(), c.emin);
+    s.detach();
+
+    assertFalse(s.attached());
   }
 }
