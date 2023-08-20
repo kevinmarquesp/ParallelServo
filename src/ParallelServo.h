@@ -83,6 +83,7 @@ public:
   inline u8 getPin(void) { return _pin; }
   inline u8 getMin(void) { return _min; }
   inline u8 getMax(void) { return _max; }
+  inline u8 getPos(void) { return _pos; }
 
 // warning: if you are just a normal user, all the code below will be a little
 // useless to you, but if you think you need to be a hacker, go ahead. And

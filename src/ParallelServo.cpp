@@ -48,8 +48,11 @@ ParallelServo* ParallelServo::move(bool condition, u8 deg, u8 speed)
   if (speed < 1)
   {
     this->write(deg);
-    _stopAndMarkMovementAsDone();
+    _pos = deg;
   }
+
+  if (_pos == deg)
+    _stopAndMarkMovementAsDone();
 
   if (!_isMoving && !_isDone)
   {
