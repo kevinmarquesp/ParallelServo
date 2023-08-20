@@ -1,6 +1,9 @@
 #include <AUnitVerbose.h>
 #include <ParallelServo.h>
 
+#define PRINT(str)  Serial.print(str)
+#define PRINTLN(str) Serial.println(str)
+
 void setup(void)
 {
   #if !defined(EPOXY_DUINO)
