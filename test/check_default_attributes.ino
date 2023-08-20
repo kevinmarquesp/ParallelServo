@@ -1,4 +1,4 @@
-test(begin_assigns_pin_value)
+test(check_default_attributes, begin_assigns_pin_value)
 {
   PRINTLN("--------- --- -- -");
 
@@ -34,7 +34,7 @@ test(begin_assigns_pin_value)
   }
 }
 
-test(begin_assigns_min_and_max_values)
+test(check_default_attributes, begin_assigns_min_and_max_values)
 {
   PRINTLN("--------- --- -- -");
 

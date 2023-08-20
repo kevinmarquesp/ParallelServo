@@ -1,4 +1,4 @@
-test(go_from_min_to_max)
+test(single_servo_movement, go_from_min_to_max)
 {
   PRINTLN("--------- --- -- -");
 
@@ -29,7 +29,7 @@ test(go_from_min_to_max)
   assertEqual(s.getIndex(), 1);
 }
 
-test(cascating_a_sequence_of_movements)
+test(single_servo_movement, cascating_a_sequence_of_movements)
 {
   PRINTLN("--------- --- -- -");
 
@@ -48,7 +48,7 @@ test(cascating_a_sequence_of_movements)
   assertNear((double)millis(), buff, 4050.0 + margin);
 }
 
-test(locking_in_the_middle_of_an_movement)
+test(single_servo_movement, locking_in_the_middle_of_an_movement)
 {
   PRINTLN("--------- --- -- -");
 
