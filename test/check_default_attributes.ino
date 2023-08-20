@@ -1,5 +1,7 @@
 test(begin_assigns_pin_value)
 {
+  PRINTLN("--------- --- -- -");
+
   typedef struct Case
   {
     uint8_t pin;
@@ -34,6 +36,8 @@ test(begin_assigns_pin_value)
 
 test(begin_assigns_min_and_max_values)
 {
+  PRINTLN("--------- --- -- -");
+
   typedef struct Case
   {
     int16_t min, max;
