@@ -12,10 +12,16 @@ PORT ?= /dev/ttyUSB0
 list-todos:
 	@grep -n 'todo:' $(LIB)/$(LIB_NAME).h $(LIB)/$(LIB_NAME).cpp | sed 's/: *\/\//: \/\//'
 
-test-avr-uno:
-	@echo "log: Compoiling tests for the arduino:avr:uno board"
+test-aunit:
+	@echo "log: Compoiling tests with the auniter.sh command line tool"
 	@echo "\nwarn: In order to use auniter.sh, you'll need to change the source"
 	@echo "code of that test script to allow you to pass options to the arduino-cli"
 	@echo "binnary string...\n"
 	AUNITER_ARDUINO_CLI="$(ARDUINO_CLI_BIN) --library $(LIB)" \
 		$(AUNITER_BIN) --cli test $(BOARD_SHORT):$(PORT) $(TEST_SKETCH)
+
+test-cli:
+	@echo "log: Uploading the test sketch"
+	@stty -F $(PORT) raw 115200
+	@$(ARDUINO_CLI_BIN) compile --library $(LIB) -u -b $(BOARD_LONG) -p $(PORT) $(TEST_SKETCH)
+	@cat $(PORT)
