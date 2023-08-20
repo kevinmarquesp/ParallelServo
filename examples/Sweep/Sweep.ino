@@ -1,3 +1,7 @@
+// todo: add doc description
+
+// todo: create an example that shows the arrow sintax
+
 #include <ParallelServo.h>
 
 ParallelServo myservo;
@@ -19,12 +23,12 @@ void loop()
   /* Important note: when this movement is finished, the index will be incremented
    * by one. So, on the next movement, the .getIndex() function will return 1. */
 
-  myservo.move(myservo.getIndex() == 1, 0, 15);  // This line will move the servo
+  myservo.move(0, 15, myservo.getIndex() == 1);  // This line will move the servo
                                                  // again to the position 0, waiting
                                                  // for 15 milliseconds for each
                                                  // degree. But this code will be
                                                  // executed only if the condition
-                                                 // on the first parameter is true.
+                                                 // on the last parameter is true.
                                                  // In this case, only if the index
                                                  // is 1 (seccond movement).
 

@@ -42,8 +42,8 @@ test(single_servo_movement, cascating_a_sequence_of_movements)
 
   while (!(s.getIndex() == 3 && s.isDone()))
     s.move(135, 20)
-      ->move(s.getIndex() == 1, 45, 10)
-      ->move(s.getIndex() == 2, 90, 30);
+      ->move(45, 10, s.getIndex() == 1)
+      ->move(90, 30, s.getIndex() == 2);
 
   assertNear((double)millis(), buff, 4050.0 + margin);
 }

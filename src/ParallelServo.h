@@ -34,6 +34,7 @@
 // todo: edit the docs to recoment to reset using reset() instead of setIndex(0)
 // todo: edit the being() jsdoc to be consistency with the types
 // todo: remove the this->read() and replace it to the _pasPos
+// todo: add a propper documentation block for each example
 
 /*!
  * A little side note: when a movement is completed, the index of this object
@@ -62,9 +63,9 @@ public:
   void begin(u8 pin, i16 min=0, i16 max=180);
 
   // todo: add a documentation for this methdos
-  ParallelServo* move(bool condition, u8 deg, u8 speed);
+  ParallelServo* move(u8 deg, u8 speed, bool condition);
 
-  // todo: add a (better) documentation for this methdos
+  // todo: add a better documentation for this methdos
   ParallelServo* move(u8 deg, u8 speed);
 
   // todo: add a documentation for this methdos

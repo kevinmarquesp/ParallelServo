@@ -32,7 +32,7 @@ void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
   _pos = _min;
 }
 
-ParallelServo* ParallelServo::move(bool condition, u8 deg, u8 speed)
+ParallelServo* ParallelServo::move(u8 deg, u8 speed, bool condition)
 {
   // this line just ajust the deg value to the correct range (between _min and _max)
   deg = deg < _min ?
@@ -69,7 +69,7 @@ ParallelServo* ParallelServo::move(bool condition, u8 deg, u8 speed)
 
 ParallelServo* ParallelServo::move(u8 deg, u8 speed)
 {
-  return this->move(_index == 0, deg, speed);
+  return this->move(deg, speed, _index == 0);
 }
 
 void ParallelServo::reset(void)
