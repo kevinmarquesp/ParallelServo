@@ -27,6 +27,9 @@
 #define u16 uint16_t
 #define u64 uint64_t
 
+#define DEFAULT_MIN 0
+#define DEFAULT_MAX 180
+
 // todo: mention on the description how the movements is counted
 // todo: edit the docs to recoment to reset using reset() instead of setIndex(0)
 // todo: edit the being() jsdoc to be consistency with the types

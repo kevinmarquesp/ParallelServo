@@ -4,8 +4,8 @@
 
 ParallelServo::ParallelServo(void)
 {
-  _min = 0;
-  _max = 180;
+  _min = DEFAULT_MIN;
+  _max = DEFAULT_MAX;
   _pos = _min;
 
   _index = 0;
@@ -20,11 +20,11 @@ void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
 {
   _pin = pin;
 
-  _min = min < _min || min >= max ?
-    _min : (u8)min;
+  _min = min < DEFAULT_MIN || min >= max ?
+    DEFAULT_MIN : (u8)min;
 
-  _max = max > _max || min >= max ?
-    _max : (u8)max;
+  _max = max > DEFAULT_MAX || min >= max ?
+    DEFAULT_MAX : (u8)max;
 
   this->attach(_pin); // methods from the Servo.h
   this->write(_min);  // move the motor to the min value at the beggining
