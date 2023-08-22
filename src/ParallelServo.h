@@ -31,22 +31,9 @@
 #define DEFAULT_MAX 180
 
 // todo: mention on the description how the movements is counted
-// todo: edit the docs to recoment to reset using reset() instead of setIndex(0)
-// todo: edit the being() jsdoc to be consistency with the types
-// todo: remove the this->read() and replace it to the _pasPos
 // todo: add a propper documentation block for each example
+// todo: fix jsdoc typos of the public methods
 
-/*!
- * A little side note: when a movement is completed, the index of this object
- * (stored in _index) will increment by one AND LOCK THE OBJECT, witch means
- * that you need to reset() it every time the movement is done, you can do that
- * using the afterDone() method.
- *
- * This feature is important to let the user controll what will happen after
- * every move, like: when the movement with index N should start or what to do
- * after every thing is done: For an example, you can set the index to 0 (with
- * setIndex(0) command) after the final movement to make it run again.
- */
 class ParallelServo: public Servo
 {
 public:
@@ -57,21 +44,50 @@ public:
    * stores the min and max values that the other methods will use to know when
    * the movement should stop.
    * @param {uint8_t} pin - Board pin that the servo object needs to be attached
-   * @param {uint8_t} min - Min value that this servo can move
-   * @param {uint8_t} max - Max value that this servo can move
+   * @param {int16_t} min - Min value that this servo can move, 0 if it's less than 0
+   * @param {int16_t} max - Max value that this servo can move, 180 if it's greater than 180
    */
   void begin(u8 pin, i16 min=0, i16 max=180);
 
-  // todo: add a documentation for this methdos
+  /*!
+   * Given a deg and a speed value, this function will do all the checks and
+   * convertions to see if the servo is ok to move and if the user condition,
+   * which could be "only moves if the index is 2, or something like that", is
+   * also true. If every thing is valid, then it will pass that deg and speed
+   * values to the routine that counts the millis() and write the position each
+   * interval.
+   * @param {uint8_t} deg       - Target position that the servo should move to
+   * @param {uint8_t} speed     - Number of milliseconds that the servo should wait for each degree moved
+   * @param {bool}    condition - Will dict if the servo should our should not start the move process
+   */
   ParallelServo* move(u8 deg, u8 speed, bool condition);
 
-  // todo: add a better documentation for this methdos
+  /*!
+   * That's a wrapper for the previous function, it does the exact same thing,
+   * but the user condition is replaced by the statement: this.getIndex() == 0, 
+   * which means that it will only move if the movement index is 0, therefore,
+   * if the it is the first movement that the servo should do before passing
+   * to the next ones.
+   * @param {uint8_t} deg   - Target position that the servo should move to
+   * @param {uint8_t} speed - Number of milliseconds that the servo should wait for each degree moved
+   */
   ParallelServo* move(u8 deg, u8 speed);
 
-  // todo: add a documentation for this methdos
+  /*!
+   * You can use this function to reset all the states of the servo object,
+   * including the movement counter (the _index). It is useful when you want to
+   * make an loop of movements or create a user input that resets the servo's
+   * state.
+   */
   void reset(void);
 
-  // todo: add a documentation for this methdos
+  /*!
+   * That's a function that recives another function as parameter (a.k.a:
+   * a lambda function) and only run this function if this servo object is
+   * marked as done. It is used when you want to reset this object or do
+   * something at the end of the movement.
+   * @param {void (*)(void)} routine - Function that will be ran when the _isDone attribute is true
+   */
   void afterDone(void routine(void));
 
   // Getters and setters to allow the user change/monitor some behavior of this
@@ -97,9 +113,21 @@ private:
   u8 _pin, _min, _max, _index, _pos;
   u64 _mpc; //stands for "multiprocessing counter"
 
-  // todo: add a documentation for this methdos
+  /*!
+   * This function should be called inside a loop event (the loop() or while).
+   * This function will count the millis() output and update the current
+   * position, writing that value for each degree - remembering that each
+   * degree waits for the specified number of milliseconds before moving to the
+   * next one.
+   * @param {uint8_t} deg   - Target position that the servo should move to.
+   * @param {uint8_t} speed - Number of milliseconds that the servo should wait for each degree moved
+   */
   void _updateCurrentPosition(u8 deg, u8 speed);
 
-  // todo: add a documentation for this methdos
+  /*!
+   * This method has no logic; it only changes the private attributes of this
+   * object: it will mark the servo as done, mark it as not moving, and
+   * increment the _index attribute by one. That's all.
+   */
   void _stopAndMarkMovementAsDone(void);
 };

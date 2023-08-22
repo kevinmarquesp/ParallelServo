@@ -1,6 +1,7 @@
 #include "ParallelServo.h"
 
-// ------------------------------ constructor ------------------------------ //
+/* ParallelServo constructor
+ * ------------------------- */
 
 ParallelServo::ParallelServo(void)
 {
@@ -14,7 +15,8 @@ ParallelServo::ParallelServo(void)
   _isMoving = false;
 }
 
-// ----------------------------- public methods ---------------------------- //
+/* ParallelServo public methods
+ * ---------------------------- */
 
 void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
 {
@@ -34,15 +36,15 @@ void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
 
 ParallelServo* ParallelServo::move(u8 deg, u8 speed, bool condition)
 {
-  // this line just ajust the deg value to the correct range (between _min and _max)
-  deg = deg < _min ?
-    _min : deg > _max ?
-      _max : deg;
-
   if (!condition || _isLocked)
     return this;
   else
     _isDone = false; //reset done value when the movement starts
+
+  // this line just ajust the deg value to the correct range (between _min and _max)
+  deg = deg < _min ?
+    _min : deg > _max ?
+      _max : deg;
 
   // it's unecessary to do any math when the speed is 0, just go ahead and finish the movemt
   if (speed < 1)
@@ -85,7 +87,8 @@ void ParallelServo::afterDone(void routine(void))
     routine();
 }
 
-// --------------------------- private methods ----------------------------- //
+/* ParallelServo private methods
+ * ----------------------------- */
 
 void ParallelServo::_updateCurrentPosition(u8 deg, u8 speed)
 {
