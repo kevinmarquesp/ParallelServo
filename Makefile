@@ -10,7 +10,7 @@ BOARD_LONG ?= arduino:avr:uno
 PORT ?= /dev/ttyUSB0
 
 list-todos:
-	@grep -n 'todo:' $(LIB)/$(LIB_NAME).h $(LIB)/$(LIB_NAME).cpp | sed 's/: *\/\//: \/\//'
+	@rg -n 'todo:' ./ | sed 's/: *\/\//: \/\//'
 
 test-aunit:
 	@echo "log: Compoiling tests with the auniter.sh command line tool"
