@@ -1,0 +1,13 @@
+ParallelServo KEYWORD1
+begin KEYWORD2
+move KEYWORD2
+reset KEYWORD2
+afterDone KEYWORD2
+getIndex KEYWORD2
+isDone KEYWORD2
+isLocked KEYWORD2
+setLock KEYWORD2
+getPin KEYWORD2
+getMin KEYWORD2
+getMax KEYWORD2
+getPos KEYWORD2
