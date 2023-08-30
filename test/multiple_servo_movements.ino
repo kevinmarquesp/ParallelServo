@@ -3,7 +3,6 @@ test(multiple_servo_movements, parallel_and_independent_movements)
   PRINTLN("--------- --- -- -");
 
   const uint8_t LIMIT = 5;
-
   ParallelServo s1, s2, s3;
   uint8_t s1i, s2i, s3i;
 

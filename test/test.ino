@@ -18,6 +18,11 @@ void setup(void)
   #if defined(EPOXY_DUINO)
     Serial.setLineModeUnix();
   #endif
+
+  TestRunner::exclude("*");
+  // TestRunner::include("check_default_attributes", "*");
+  // TestRunner::include("single_servo_movement", "*");
+  // TestRunner::include("multiple_servo_movements", "*");
 }
 
 void loop(void)
