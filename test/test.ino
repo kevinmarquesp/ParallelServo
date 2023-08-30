@@ -4,6 +4,8 @@
 #define PRINT(str)  Serial.print(str)
 #define PRINTLN(str) Serial.println(str)
 
+using namespace aunit;
+
 void setup(void)
 {
   #if !defined(EPOXY_DUINO)
@@ -20,5 +22,5 @@ void setup(void)
 
 void loop(void)
 {
-  aunit::TestRunner::run();
+  TestRunner::run();
 }
