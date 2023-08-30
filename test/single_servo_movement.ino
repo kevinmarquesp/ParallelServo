@@ -27,6 +27,8 @@ test(single_servo_movement, go_from_min_to_max)
   assertNear((double)millis(), buff, 1800.0 + margin);
   assertEqual(s.getPos(), 0);
   assertEqual(s.getIndex(), 1);
+
+  s.detach();
 }
 
 test(single_servo_movement, cascating_a_sequence_of_movements)
@@ -46,6 +48,8 @@ test(single_servo_movement, cascating_a_sequence_of_movements)
       ->move(90, 30, s.getIndex() == 2);
 
   assertNear((double)millis(), buff, 4050.0 + margin);
+
+  s.detach();
 }
 
 test(single_servo_movement, locking_in_the_middle_of_an_movement)
@@ -70,4 +74,6 @@ test(single_servo_movement, locking_in_the_middle_of_an_movement)
   }
 
   assertNear((double)millis(), buff, 5900.0 + margin);
+
+  s.detach();
 }

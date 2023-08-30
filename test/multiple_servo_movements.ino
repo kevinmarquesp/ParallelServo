@@ -33,6 +33,10 @@ test(multiple_servo_movements, parallel_and_independent_movements)
   assertEqual(s1.getPos(), LIMIT % 2 == 0 ?  0 : 180);
   assertEqual(s2.getPos(), LIMIT % 2 == 0 ? 90 : 180);
   assertEqual(s3.getPos(), LIMIT % 2 == 0 ?  0 :  90);
+
+  s1.detach();
+  s2.detach();
+  s3.detach();
 }
 
 test(multiple_servo_movements, start_the_next_when_the_previous_terminate)
@@ -63,6 +67,10 @@ test(multiple_servo_movements, start_the_next_when_the_previous_terminate)
   assertEqual(s1.getPos(), 180);
   assertEqual(s2.getPos(), 180);
   assertEqual(s3.getPos(), 180);
+
+  s1.detach();
+  s2.detach();
+  s3.detach();
 }
 
 test(multiple_servo_movements, cascating_a_sequence_of_movements)
@@ -95,4 +103,8 @@ test(multiple_servo_movements, cascating_a_sequence_of_movements)
   assertEqual(s1.getPos(), 180);
   assertEqual(s2.getPos(), 180);
   assertEqual(s3.getPos(), 180);
+
+  s1.detach();
+  s2.detach();
+  s3.detach();
 }
