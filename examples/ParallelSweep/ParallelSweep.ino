@@ -1,8 +1,10 @@
-// todo: add doc description
-// todo: add doc comments
-
-// todo: create an example that uses the base servo strategy
-// todo: create an example that uses the .afterDone() method
+/*!
+ * Warning! Maybe you'll need to checkout the other examples to fully
+ * understand how this library works.
+ *
+ * Checkout the other examples:
+ * + Sweep/
+ */
 
 #include <ParallelServo.h>
 
@@ -21,6 +23,10 @@ void setup()
 
 void loop()
 {
+  /* It's important to note that each servo is handled quite the same way, look
+   * how this block of code repeats itself three times. The code below
+   * controls the servo_1. */
+
   servo_1.move(180, DELAY);
   servo_1.move(  0, DELAY, servo_1.getIndex() == 1);
 
@@ -29,6 +35,8 @@ void loop()
     servo_1.reset();
   }
 
+  /* The code below controls the servo_2. */
+
   servo_2.move(90, DELAY);
   servo_2.move(45, DELAY, servo_2.getIndex() == 1);
 
@@ -36,6 +44,8 @@ void loop()
   {
     servo_2.reset();
   }
+
+  /* And the code below controls the servo_3. */
 
   servo_3.move(180, DELAY);
   servo_3.move( 90, DELAY, servo_3.getIndex() == 1);

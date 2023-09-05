@@ -1,6 +1,7 @@
-// todo: add doc description
-
-// todo: create an example that shows the arrow sintax
+/*!
+ * Warning! Maybe you'll need to checkout the other examples to fully
+ * understand how this library works.
+ */
 
 #include <ParallelServo.h>
 

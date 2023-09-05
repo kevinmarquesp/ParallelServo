@@ -1,39 +1,49 @@
-// todo: add doc description
-// todo: add doc comments
+/*!
+ * Warning! Maybe you'll need to checkout the other examples to fully
+ * understand how this library works.
+ *
+ * Checkout the other examples:
+ * + Sweep/
+ * + Arrow/
+ * + AfterDone/
+ * + ParallelSweep/
+ */
 
 #include <ParallelServo.h>
 
 #define DELAY 10
 
-ParallelServo sv1, sv2, sv3;
+ParallelServo servo_1, servo_2, servo_3;
 
 void setup()
 {
-  sv1.begin(7,  0, 180);
-  sv2.begin(6, 45,  90);
-  sv3.begin(5, 90, 180);
+  servo_1.begin(7,  0, 180);
+  servo_2.begin(6, 45,  90);
+  servo_3.begin(5, 90, 180);
 }
 
 void loop()
 {
-  sv1.move(180, DELAY)
-    ->move(  0, DELAY, sv1.getIndex() == 1)
+  /* Now it's a little more easy to distinguish each block of movements. */
+
+  servo_1.move(180, DELAY)
+    ->move(  0, DELAY, servo_1.getIndex() == 1)
     ->afterDone([](){
-      if (sv1.getIndex() == 2)
-        sv1.reset();
+      if (servo_1.getIndex() == 2)
+        servo_1.reset();
     });
 
-  sv2.move(90, DELAY * 3)
-    ->move(45, DELAY * 3, sv2.getIndex() == 1)
+  servo_2.move(90, DELAY * 3)
+    ->move(45, DELAY * 3, servo_2.getIndex() == 1)
     ->afterDone([](){
-      if (sv2.getIndex() == 2)
-        sv2.reset();
+      if (servo_2.getIndex() == 2)
+        servo_2.reset();
     });
 
-  sv3.move(180, DELAY * 2)
-    ->move( 90, DELAY * 2, sv3.getIndex() == 1)
+  servo_3.move(180, DELAY * 2)
+    ->move( 90, DELAY * 2, servo_3.getIndex() == 1)
     ->afterDone([](){
-      if (sv3.getIndex() == 2)
-        sv3.reset();
+      if (servo_3.getIndex() == 2)
+        servo_3.reset();
     });
 }

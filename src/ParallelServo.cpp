@@ -18,7 +18,7 @@ ParallelServo::ParallelServo(void)
 /* ParallelServo public methods
  * ---------------------------- */
 
-void ParallelServo::begin(u8 pin, i16 min=0, i16 max=180)
+void ParallelServo::begin(u8 pin, i16 min, i16 max)
 {
   _pin = pin;
 

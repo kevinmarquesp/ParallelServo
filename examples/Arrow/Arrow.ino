@@ -1,4 +1,10 @@
-// todo: add doc description
+/*!
+ * Warning! Maybe you'll need to checkout the other examples to fully
+ * understand how this library works.
+ *
+ * Checkout the other examples:
+ * + Sweep/
+ */
 
 #include <ParallelServo.h>
 

@@ -9,6 +9,12 @@
  *   -> https://circuitdigest.com/microcontroller-projects/arduino-multitasking-using-millis-in-arduino
  *   -> https://kevinmarquesp.github.io/post/230719143253_multitasking-com-um-arduino-uno/
  *
+ * When a servo movement is done, it will count up the internal state
+ * (represented by the _index property on this class) by one, starting with 0.
+ * Which means that the servo will start with 0, when it is done, the index
+ * should be 1, and if there is a movement that verifies if the index is 1 to
+ * move, it will move, and the index will be 2 after that, and so on.
+ *
  * In order to make this library work properly, you'll need to have the
  * `Servo.h` library installed. You can download it manually from this
  * repository:
@@ -28,9 +34,6 @@
 
 #define DEFAULT_MIN 0
 #define DEFAULT_MAX 180
-
-// todo: mention on the description how the movements is counted
-// todo: add a propper documentation block for each example
 
 class ParallelServo: public Servo
 {
